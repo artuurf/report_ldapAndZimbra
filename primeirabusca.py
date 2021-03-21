@@ -5,7 +5,7 @@ from csv import DictWriter
 
 address_ldap = '10.0.4.77'
 user = 'uid=zimbra,cn=admins,cn=zimbra'
-password = 'e7eq_Y3pA_'
+password = ''
 base = 'dc=inova,dc=net'
 
 # Iniciar conexão
