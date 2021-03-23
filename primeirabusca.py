@@ -7,6 +7,8 @@ address_ldap = '10.0.4.77'
 user = 'uid=zimbra,cn=admins,cn=zimbra'
 password = ''
 base = 'dc=inova,dc=net'
+path_archive = 'listateste.csv'
+domain = ''
 
 # Iniciar conexão
 try:
@@ -25,7 +27,7 @@ atributo = ['displayName', 'zimbraLastLogonTimestamp']
 result = connection.search_s(base, ldap.SCOPE_SUBTREE, ldap_filter, atributo)
 
 
-with open('listateste.csv', 'w') as arquivo:
+with open(path_archive, 'w') as arquivo:
     data_csv = DictWriter(arquivo, fieldnames=atributo)
     data_csv.writeheader()
     for account in result:
