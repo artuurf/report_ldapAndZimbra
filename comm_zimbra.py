@@ -22,6 +22,7 @@ class GetZimbra():
         pass
 
     def getAllCos(self):
+        """Retorna todos os COS do ambiente"""
         self.request.add_request(
             "GetAllCosRequest",
             {
@@ -31,9 +32,32 @@ class GetZimbra():
         response = self.comm.send_request(self.request)
         if not response.is_fault():
             allcos = response.get_response(1)['GetAllCosResponse']['cos']
-            return [{k: v for k, v in cos.items() if k == 'name' or k == 'id'} for cos in allcos]
+            return [{k: v for k, v in cos.items() if k == 'name' or k == 'id'} for cos in allcos] # Retornar somente name e ID do COS
         else:
-            return f'Error: {response.get_fault_message()}'
+            return f'Error getAllCos: {response.get_fault_message()}'
+    
+    def getAllDomains(self):
+        """Retornar todos os dominios do ambiente"""
+        pass
+
+    def countAccount(self):
+        """Limite de COS por dominio"""
+        self.request.add_request(
+           'CountAccountRequest',
+           {
+                "domain": {
+                    "_content": self.domain,
+                    "by": "name"
+                }
+            },
+            'urn:zimbraAdmin'
+        )
+        response = self.comm.send_request(self.request)
+        if not response.is_fault():
+            countcos = response.get_response(1)
+            return countcos 
+        else:
+            return f'Error CountAccount: {response.get_fault_message()}'
 
 
 if __name__ == '__main__':
@@ -54,7 +78,7 @@ if __name__ == '__main__':
         if not response.is_fault():
             return response.get_response()['GetQuotaUsageResponse']['account']
         else:
-            return f'Error: {response.get_fault_message()}'
+            return f'Error getQuota: {response.get_fault_message()}'
 
 
 
