@@ -10,7 +10,7 @@ class GetZimbra():
         hostname = 'webmail.inova.com.br'
         self.url = f'https://{hostname}:7071/service/admin/soap'
         self.usr = 'artur.santos@inova.net'
-        self.__password = 'Art.854796'
+        self.__password = ''
         self.domain = 'inova.net'
 
         self.comm = Communication(self.url)
