@@ -10,6 +10,7 @@ import urllib
 class GetZimbra():
     def __init__(self, hostname, user, password, domain, pathzm, atributo, add_domain, quota, path_archive):
         self.url = f'https://{hostname}:7071/service/admin/soap'
+<<<<<<< HEAD
         self.usr = user
         self.__password = password
         self.domain = domain.split(',')
@@ -24,6 +25,11 @@ class GetZimbra():
     def connect(self):
         try:
             self.comm = Communication(self.url)
+=======
+        self.usr = 'artur.santos@inova.net'
+        self.__password = ''
+        self.domain = 'inova.net'
+>>>>>>> 262aeaf60b95b8e3cd635c1e629abc6dab7c64fb
 
             self.__token = auth.authenticate(self.url, self.usr, self.__password, admin_auth=True)
             self.request = self.comm.gen_request(token=self.__token, set_batch=True)
